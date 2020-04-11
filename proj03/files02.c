@@ -45,7 +45,19 @@ int main() {
     if((fdt=mkstemp(tmpbuf))==-1) errExit("error on opening temp");
     printf("........opened tempfile %s for rw\n",tmpbuf);
 
+    int fg=fcntl(fdr,F_GETFL);
+    if (fg==-1) errExit("error reading the flags");
+    printf("read the flags of file test01.dat as \n decimal: %d\n hexadecimal: 0x%x\n octal: 0%o\n",fg,fg,fg);
     
+    int newfg=fg | O_APPEND;
+
+    fg=fcntl(fdr,F_SETFL,newfg);
+    if (fg==-1) errExit("error writing new flags");
+    printf("wrote the flags of file test01.dat as \n decimal: %d\n hexadecimal: 0x%x\n octal: 0%o\n",fg,fg,fg);
+
+    fg=fcntl(fdr,F_GETFL);
+    if (fg==-1) errExit("error on second reading the flags");
+    printf("read the flags of file test01.dat second time  as \n decimal: %d\n hexadecimal: 0x%x\n octal: 0%o\n",fg,fg,fg);
 
     	
 
