@@ -1,7 +1,7 @@
 #include "start01.h"
 
 #define MAX_BUF 100
-#define PATH01 "/home/marty/cmakes/proj03/data/test01.dat"
+#define PATH01 "/home/marty/cmakes/proj03-processes/data/test01.dat"
 extern char **environ;
 
 int main() {
