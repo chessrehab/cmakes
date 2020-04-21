@@ -36,6 +36,9 @@ int main() {
 	print_stat(fd1,stb);
 	int fd2=open(PATH02,(O_RDWR|O_CREAT|O_TRUNC));
 	print_stat(fd2,stb);
+	fchmod(fd2,UMSK);
+	print_stat(fd2,stb);
+	
 }
 
 
