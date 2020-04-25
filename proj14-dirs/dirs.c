@@ -1,6 +1,11 @@
+#define _XOPEN_SOURCE 600
 #include "start01.h"
 #include <sys/stat.h>
 #include <dirent.h>
+#include <libgen.h>
+#include <ftw.h>
+
+
 
 #define MAX_BUF 100
 #define PATH01 "/home/martyx/cmakes/proj14-dirs/data/test01.dat"
@@ -10,15 +15,27 @@
 #define PATH05 "/home/martyx/cmakes/proj14-dirs/data/renamed_test01-hl2"
 #define PATH06 "/home/martyx/cmakes/proj14-dirs/data/symlink_to_renamed_test01-hl2"
 #define PATH07 "/home/martyx/cmakes/proj14-dirs/data/nw_folder"
-#define PATH08 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2"
+#define PATH08 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/"
 #define PATH09 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1.dat"
 #define PATH10 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp2.dat"
 #define PATH11 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp3.dat"
 #define PATH12 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl.dat"
 #define PATH13 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl-syml.dat"
 #define PATH14 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/temp_fl2"
+#define PATH15 "/home/martyx/cmakes/proj14-dirs/"
 
 
+int vypis(const	char*pathname1,const  struct stat *stat1, int type, struct FTW *ftwb) {
+	printf("\n %*s%s",4 * ftwb->level," ",pathname1);
+	printf("\n%*sST_DEV:%o\n",5 * ftwb->level," ",stat1->st_dev);
+	printf("%*sST_INO:%d\n",5 * ftwb->level," ",stat1->st_ino);
+	printf("%*sST_MODE:%s\n",5 *ftwb->level," ",(stat1->st_mode & S_IFDIR)? "directory": "file");
+//	printf("-----------------------------\n");
+//	printf("FTW type:%o\n",type);
+//	printf("FTW:\nbase:%d\nlevel:%d\n",ftwb->base,ftwb->level);
+//	printf("..............................................\n");
+	return 0;
+}
 
 int main() {
 	if(link(PATH01,PATH04)==-1) {
@@ -43,16 +60,32 @@ int main() {
 	link(PATH09,PATH12);
 	symlink(PATH12,PATH13);
 	mkdir(PATH14,S_IRUSR|S_IWUSR|S_IXUSR);
+	
 	DIR *dirstr=opendir(PATH08);
 	struct dirent *dirent1;
 	while ((dirent1=readdir(dirstr))!=NULL) {
 		printf("\nread_entry_inode:%d\nentry_name:%s\n",(int) dirent1->d_ino,dirent1->d_name);
 	}
-	printf("\n....................................................................................\n");
+	printf("\n...................................................................................................................\n");
 	rewinddir(dirstr);
+	struct stat *s=malloc(sizeof(struct stat));
+	char dirname1[255];
 	while ((dirent1=readdir(dirstr))!=NULL) {
-		printf("\nread_entry_inode:%d\nentry_name:%s\n",(int) dirent1->d_ino,dirent1->d_name);
+		if(strcmp(dirent1->d_name,".")!=0 && strcmp(dirent1->d_name,"..")!=0) {
+			printf("\nread_entry_inode:%d\nentry_name:%s",(int) dirent1->d_ino,dirent1->d_name);
+			sprintf(dirname1,"%s/%s\0",dirname(strdup(PATH09)),dirent1->d_name);
+			printf("\nfull_path:%s\n",dirname1);
+			stat(dirname1,s);
+			printf("\nST_DEV:%o\n",s->st_dev);
+			printf("ST_INO:%d\n",s->st_ino);
+			printf("ST_MODE:%s\n",(s->st_mode & S_IFDIR)? "directory": "file");
+			printf("-----------------------------\n");
+		}
 	}
+	
+	
+	int ntf=nftw(PATH15,vypis,20,0);
+	
 	
 	closedir(dirstr);	
 }
