@@ -12,23 +12,15 @@ void handler1(int s) {
 	psignal(s,"msg desc disgnal:");
 }
 static void handler_info(int sig,siginfo_t *siginfo,void *ucontext) {
-	struct s1 {
-		int id;
-		char *name;
-	};
 	printf("\n signal recieved:%o(%s)\n",sig,strsignal(sig));
 	printf ("\n signal info:si_signo:%d,si_code:%d\n",siginfo->si_signo,siginfo->si_code);
-	printf ("\n signal from:si_pid:%d\n",siginfo->si_pid);
-	printf ("\n signal val:si_int:%d\n",siginfo->si_int);
-	printf ("\n signal strukt s1:id:\nname:%s\n",((struct s1*) siginfo->si_ptr)->name);
 	printf ("\n \n");
 }
-
 
 int main() {
 //	void (*fc_pointer)(int)=signal(2,handler1);
 	sigset_t  pend_set,myset,myset2,fullmask,prevmask;
-	
+
 	if(sigemptyset(&myset)==-1) errExit("error:emptyset creation");
 	if(sigaddset(&myset,SIGKILL)==-1) errExit("error:addset");
 	if(sigaddset(&myset,SIGHUP)==-1) errExit("addset");
@@ -40,7 +32,7 @@ int main() {
 	if(sigaddset(&myset,SIGKILL)==-1) errExit("addset");
 	sigfillset(&fullmask);
 	sigdelset(&fullmask,3);
-	sigdelset(&fullmask,61);
+//	sigdelset(&fullmask,59);
 	sigprocmask(SIG_SETMASK,&fullmask,&prevmask);
 	
 	if(sigemptyset(&myset2)==-1) errExit("sigfillset");
@@ -61,21 +53,12 @@ int main() {
 	sigpending(&pend_set);
 	printf("\nPID:%d",getpid());
 	printf("\nx");
-    	//sleep(15);
+    	sleep(15);
 	sigpending(&pend_set);
 	if(sigismember(&pend_set,59)) {
 		printf("recieved signal 59!");
 	} else { 
 		printf("not");
-	}
-	int show=0;
-	while(1) {
-		sigpending(&pend_set);
-		if(sigismember(&pend_set,59)) {
-			if(!show) printf("recieved signal 59!");
-			show++;
-		}
-	
 	}
 		
 	
