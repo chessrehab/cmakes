@@ -7,7 +7,14 @@
 #define PATH02 "/home/martyx/cmakes/proj19-exec/data/test02.dat"
 #define PATH03 "/home/martyx/cmakes/proj19-exec/data/test03.dat"
 
+void ex1() {
+	printf("exiting parent...");
+
+}
+
+
 int main(int argc, char *argv[]) {
+	atexit(ex1);
 	int fk,stat;
 	switch (fk=fork()) {
 		case -1:
