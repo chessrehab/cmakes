@@ -8,21 +8,21 @@
 
 
 #define MAX_BUF 100
-#define PATH01 "/home/marty/cmakes/proj14-dirs/data/test01.dat"
-#define PATH02 "/home/marty/cmakes/proj14-dirs/data/test02.dat"
-#define PATH03 "/home/marty/cmakes/proj14-dirs/data/test03.dat"
-#define PATH04 "/home/marty/cmakes/proj14-dirs/data/test01-hl2"
-#define PATH05 "/home/marty/cmakes/proj14-dirs/data/renamed_test01-hl2"
-#define PATH06 "/home/marty/cmakes/proj14-dirs/data/symlink_to_renamed_test01-hl2"
-#define PATH07 "/home/marty/cmakes/proj14-dirs/data/nw_folder"
-#define PATH08 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/"
-#define PATH09 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/tmp1.dat"
-#define PATH10 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/tmp2.dat"
-#define PATH11 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/tmp3.dat"
-#define PATH12 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl.dat"
-#define PATH13 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl-syml.dat"
-#define PATH14 "/home/marty/cmakes/proj14-dirs/data/temp_folder2/temp_fl2"
-#define PATH15 "/home/marty/cmakes/proj14-dirs/"
+#define PATH01 "/home/martyx/cmakes/proj14-dirs/data/test01.dat"
+#define PATH02 "/home/martyx/cmakes/proj14-dirs/data/test02.dat"
+#define PATH03 "/home/martyx/cmakes/proj14-dirs/data/test03.dat"
+#define PATH04 "/home/martyx/cmakes/proj14-dirs/data/test01-hl2"
+#define PATH05 "/home/martyx/cmakes/proj14-dirs/data/renamed_test01-hl2"
+#define PATH06 "/home/martyx/cmakes/proj14-dirs/data/symlink_to_renamed_test01-hl2"
+#define PATH07 "/home/martyx/cmakes/proj14-dirs/data/nw_folder"
+#define PATH08 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/"
+#define PATH09 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1.dat"
+#define PATH10 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp2.dat"
+#define PATH11 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp3.dat"
+#define PATH12 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl.dat"
+#define PATH13 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/tmp1-hl-syml.dat"
+#define PATH14 "/home/martyx/cmakes/proj14-dirs/data/temp_folder2/temp_fl2"
+#define PATH15 "/home/martyx/cmakes/proj14-dirs/"
 
 typedef int (*vypis_t)(const char*,const  struct stat *, int , struct FTW *);
 
