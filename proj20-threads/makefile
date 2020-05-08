@@ -15,7 +15,7 @@ OBJECTS := $(SRCS:%.c= %.o)
 
 thread01:${OBJECTS}
 	@echo "Linking object files to executable..." 
-	${COMPILER} ${LINKERFLAG} *.o -o $@
+	${COMPILER} -pthread  ${LINKERFLAG} *.o -o $@
 
 %.o: %.c
 	@echo "Compiling source code to object files..."
