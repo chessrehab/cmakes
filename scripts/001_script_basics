@@ -1,0 +1,15 @@
+#! /bin/bash
+echo -n "The date and time is: ";date
+echo -n 'Logged in users: ';who;
+echo -n 'my user is: ';whoami;
+echo "user id: $USER";
+echo "user name: $UID";
+echo "path:$PATH";
+echo HOME:$HOME;
+echo LD_LIBRARY_PATH: ${HOME};
+datum=`date`
+datum2=$(date)
+datum3=$datum
+datum4=$datum2
+echo $datum3
+echo "druhy datum je $datum4"
