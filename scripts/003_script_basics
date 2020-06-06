@@ -1,0 +1,20 @@
+#! /bin/bash
+
+var1=2
+var4=10
+var2=$[ $var1 ** 3 - $var4]
+
+if (( $var1 ** 3 -$var4 > $var4 )); then echo "$var2  is greater than $var4";else echo "$var2 is not greater than $var4";fi;
+if [[ $USER != m* ]]; then echo "$USER start with m";else echo "$USER doesnt start with m";fi;
+
+if [ -e 001* ] && [ -f 001* ]; then echo "yes to 001* and file 001*" ; else echo "no to 001* and file 001*";fi; 
+if [ -e 001* ] || [ -d 001* ]; then echo "yes to 001* or dir 001*" ; else echo "no to 001* or dir 001*";fi; 
+if [ -x 002* ] ; then echo "yes to 002* executable " ; else echo "no to 002* executable";fi; 
+if [ -r 002* ] ; then echo "yes to 002* readable " ; else echo "no to 002* readable";fi; 
+if [ -w 002* ] ; then echo "yes to 002* writable " ; else echo "no to 002* writable";fi; 
+
+if [ -O 002* ] ; then echo "yes to 002* owned " ; else echo "no to 002* owned";fi; 
+if [ -G 002* ] ; then echo "yes to 002* group owned " ; else echo "no to 002* group owned";fi; 
+if [ 001* -ot 002* ] ; then echo "001* older than  002*  " ; else echo "001* not older than  002* " ;fi; 
+if [ 002* -nt 001* ] ; then echo "002* newer than  001*  " ; else echo "002* not newer than  001* " ;fi; 
+

@@ -1,0 +1,19 @@
+#! /bin/bash
+ 
+today=`date +%y%m%d`
+if  ls > output`date +%y%m%d`
+then
+	echo "hellooo"
+else
+	echo "no hello"
+fi
+
+if [ $today \> "0000" ]
+then 
+	echo "greater"
+else
+	echo "less"
+fi
+if [ 6 -gt 4 ]; then echo "greater";fi
+if [ 5 -ge 6 ]; then echo "greqterequal";else echo "less";fi
+if [ 7 -lt 10 ]; then echo "less then equl";fi
