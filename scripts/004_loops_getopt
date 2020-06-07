@@ -1,0 +1,32 @@
+#! /bin/bash
+echo "number of command line paramateres before:$#"
+
+set -- $(getopt ab:cd "$@")
+echo "adjusted command line:$@"
+echo "number of command line paramateres after:$#"
+cnt=1
+while [ -n "${!cnt}" ]
+do
+	case ${!cnt} in
+		-a) echo "caught -a option"
+		    (( cnt++ ));;	
+		-b) var=$(( $cnt + 1 )) 
+	       	    echo "caught -b option with parameter ${!var}"
+		    (( cnt++ )); (( cnt++ ));;
+		-c) echo "caught -c option"
+		    (( cnt++ ));; 
+		-d) echo "caught -d option"
+	            (( cnt++ ));;	
+		--) (( cnt++ ));break;;
+	esac
+done
+cnt2=1
+echo "cnt:$cnt"
+while [ -n "${!cnt}" ]
+do
+	echo "parameter#$cnt2:${!cnt}"
+	(( cnt++ )); (( cnt2++ ))
+done
+ 
+
+

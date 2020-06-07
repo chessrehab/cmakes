@@ -1,0 +1,25 @@
+#! /bin/bash
+
+while getopts  a:b:cd opt 
+do
+	case "$opt" in
+		a) echo "caught -a with $OPTARG parameter";;
+		b) echo "caught -b with $OPTARG parameter";;
+		c) echo "caught -c ";;
+		d) echo "caught -d ";;
+		*) echo "unknown option:$opt";;
+	esac
+done
+cnt=1
+shift $[ $OPTIND - 1 ]
+for param in "$@"
+do
+	echo "Parameter #$cnt:$param"
+	cnt=$[ $cnt + 1 ]
+done
+read -p "enter your username: " answer
+echo "welcome $answer"
+read -s -p "enter your password: " pass
+echo
+echo "your password is: $pass"
+
