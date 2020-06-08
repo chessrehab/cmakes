@@ -1,0 +1,22 @@
+#! /bin/bash
+
+echo "hello" >&1
+echo "heloo" >&2
+read line <&0
+echo "u wrote:$line"
+exec 3>&1
+exec 1>/dev/null
+exec 4>>testfile01
+echo "hello1-toto by malo urplne miznut"
+echo "hello2-toto by malo vyjst na screen" >&3  
+echo "toto by sa malo zobrazit v tempfajli" >&4
+exec 1>&3
+echo "toto by tiez malo vyjst na screen"
+tempdir=$(mktemp -t -d   marty.XXXXXX)
+cd $tempdir
+tempfile1=$(mktemp martyf.XXXXXX)
+exec 1>$tempfile1
+echo "writing to standard output redirected to $tempdir directrory and file $tempfile1"
+echo "now im gonna be writing to fd 3" >&3
+cat $tempfile1 >&3
+
