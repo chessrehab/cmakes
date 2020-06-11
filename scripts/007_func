@@ -1,0 +1,46 @@
+#! /bin/bash
+gl1="gl1"
+gl2="gl2"
+function func1 {
+ 	local navrat=200
+
+	local gl2="local gl2"
+ 	echo "echoing fromn func1"
+	echo "global gl1=$gl1"
+	echo "gl2=$gl2"
+	return $navrat
+}
+func2() {
+#	echo "echoing from func2"
+	echo "navrat ktory chcem"
+}
+func3() {
+	local pole=(`echo "$@"`)
+	local cnt=0
+	for var in $@ 
+	do
+
+		pole[$cnt]=$[ $var * 2 ]
+		cnt=$[ $cnt + 1 ]
+	done 
+
+	echo "${pole[*]}"
+
+}
+echo "gl2=$gl2"
+echo "echoing from main..."
+func1
+echo "navratova hodnota funkcie 1 je $?"
+navrat2=$(func2)
+echo "navratova hodnota funckcie 2 je $navrat2"
+echo "gl2=$gl2"
+myarray=(1 2 3 4 5 6 7)
+navrat3=(`func3 ${myarray[*]}`)
+echo "vyseldne vratene pole je ${navrat3[*]}" 
+for vr in ${navrat3[*]}
+do
+	echo $vr
+done
+
+echo "...over"
+
