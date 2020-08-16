@@ -1,4 +1,3 @@
-#include "help_h.h"
 
 //fatal error message
 void fatal(char *message)  {

@@ -1,0 +1,131 @@
+/etc/login.defs		file with initial variables for system init
+/etc/passwd		file that hols information about users
+/etc/shadow		password info (ds since last chg,til can be chgd.,til has to chgd,exp warning ds,disable after exp,disabled days
+/etc/default/useradd	file defining the default behavioor when using useradd command
+/etc/skel		skeleton of files to be copied to new users home directory
+/etc/sudoers		file with super user definitions (should be edited via cmd 'visudo'
+/etc/sudoers.d		directory with files that can contain sudo file definitions
+/etc/group		directory with all the groups on the system
+/etc/.profile		initial file with all settings for all users, can be overwritten by distro updates
+/etc/profile.d		dir with scripts to be run from .profile file, better place to add init scripts for all users setup
+/home/user/.profile	file with settings for particular user
+/home/user/.bashrc	file usually run from /home/user/.profile with settings for bash shell. Also this file is pointed by BASH_ENV which is used for running programs when non-interactive shell is started
+/bin			binaries
+/boot			boot files
+/dev			device nodes
+/etc			system confoguration files
+/home			home directories for users
+/lib			directories for shared libraries
+/media			mounting points for removable media
+/mnt			same as media
+/opt			optional-could be third parties sw
+/proc			processes, running process info
+/root			user root home dir
+/sbin			system binaries for GNU utilities
+/run			system runtime data
+/srv			local services storage
+/sys			system hardware information
+/tmp			temp workfiles
+/usr			user binaries
+/var			log files
+/proc/partitions	shows partitions on hd
+/etc/fstab		shows hd filesystems
+/etc/apt/sources.list	shows the sources of repositories for the distro
+/var/spool/cron/atjobs  stores jobs to be executed at certain later time
+/var/spool/cron/atspool/stores outputs from the jobs scheduled by at
+/etc/at.allow		who is allowed to run at jobs schedules
+/etc/at.deny		who is denied running at jobs
+/var/spool/cron/crontabs directory with crontables per user
+/etc/cron.allow		file with info who is allowed to use cron jobs
+/etc/cron.deny		file with info who is denied use of cron jobs
+/etc/cron.hourly	jobs defined to be run hourly
+/etc/cron.daily		jobs to be run daily
+/etc/cron.weekly	jobs to be run weekly 
+/etc/cron.monthly	jobs to be run monthly
+/etc/anacrontab		file that stores anacron table to be run after start up of the sytem, checking the cron jobs timestamps
+/var/spool/anacron	directory with files of timestamps for cronjobs
+/proc/meminfo		memory usage info
+/usr/share/man		manual pages for installled sw
+/usr/share/doc		documentation for installed sw
+/var/cache/apt/archives	all debian packages downloaded and installed by apt
+/proc/cpuinfo		info about processors
+/proc/net/dev		active network interfaces info
+/proc/net/route		routing information
+/proc/net/netstat	network statistics
+/proc/version		kernel version info
+/proc/uptime		uptime of running system
+/proc/stat		statistics on processes, cpu load, swap etc
+/var/log/apport.log	log with information about system crashes
+/var/log/auth.log	log about system access and authentification including sudo usage
+/var/log/boot.log	log about startup process
+/var/log/kern.log	log with kernel messages, warnings and errors
+/var/log/syslog		log with info about system events
+/var/log/ufw.log	log with infor fromubuntu firewall
+/var/log/apt/history.log log with info about package installation and removal
+/var/log/faillog	log with failed logins
+/var/log/lastlog	log with info a users
+/etc/hosts		shows hosts ip addresses
+/etc/services		shows standard port numbers for services
+/etc/nsswitch.conf	lists order in which services are accessed in the system
+/etc/resolv.conf	shows DNS configuration
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+

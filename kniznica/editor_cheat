@@ -1,0 +1,66 @@
+VIM i			enter insert mode
+VIM ESC			enter normal mode (for commands)
+VIM h,j,k,l		move cursor left,down,up,right
+VIM G			move to the last line of the buffer
+VIM num G		move to the num line of the buffer
+VIM gg			move to the firts line of the buffer
+VIM :			enter the CL mode
+VIM :q,:q!,:wq,:w FILE	in command line mode you can quit,force quit,write quit or write as
+VIM x			delete a character
+VIM dd			delete a line
+VIM dw			deletes the word
+VIM d$			deletes to the end of the line
+VIM J			deletes the linebreak at the end of the line(adds next line to it)
+VIM u			undo previous command
+VIM a			appends after the current cursor position
+VIM A			appends to the end of the line
+VIM r CHAR		replaces a single character at the current position with CHAR
+VIM R text		overwrites the data at the current position until ESC pressed
+VIM nx			deletes n chars
+VIM ndd			deletes n lines
+VIM v			enter visual selecting mode
+VIM y			yank selected text
+VIM p			paste yanked text
+VIM /			enters the string search mode
+VIM :/old/new		search and replace old with new
+VIM :%s/old/new/g	search and replace old with new in entire buffer
+VIM :%s/old/new/gc	search and replace old with new in the entire buffer with a prompt
+EMACS Ctrl-X Ctrl-S	saves and exits buffer
+EMACS Ctrl-X Ctrl-F	find a file to open in a buffer
+EMACS Ctrl-X b		allows entering a open buffer name to switch to
+EMACS Ctrl-x Ctrl-b	shows open buffers
+EMACS Ctrl-X 2		open second window under
+EMACS Ctrl-X 3		open second window right
+EMACS Ctrl-X 1		only one window buffer
+EMACS Ctrl-x 0		closes the window with active cursor
+EMACS Ctrl-p 		move up one line
+EMACS Ctrl-b		moves back one char
+EMACS Ctrl-f		moves fwd one char
+EMACS Ctrl-n		move to the next line
+EMACS Ctrl-a		move to the beginning of a line
+EMACS Ctrl-e		move to the end of line
+EMACS Ctrl-v		move fwd one screen
+EMACS Ctrl-x Ctrl-g	cancel the command
+EMACS Ctrl-x Ctrl-c	exit emacs
+EMACS Alt-f  		move fwd one word
+EMACS Alt-b		move back one word
+EMACS Alt-a		move to beginning of a sentence
+EMACS Alt-e		move to end of sentence
+EMACS Alt-<		move to first line of buffer
+EMACS Alt->		move to last line of buffer
+EMACS Ctrl-z		run emacs in background
+EMACS Alt-Bspace	kills the word before current pos
+EMACS Alt-d		kills the word after current pos
+EMACS Ctrl-k		kills from the curr cursor to endl
+EMACS Alt-k		kills from cur pos to end of sentence
+EMACS Ctrl-space	starts higlighting
+EMACS Ctrl-w		ends higlighting
+EMACS Ctrl-/		undos the kill
+EMACS Ctrl-y		yanks(pastes) the killed text
+EMACS Alt-y		circulate through killed sections
+EMACS Ctrl-s		searches fwd
+EMACS Ctrl-r		searches backwards (reverse)
+EMACS Alt-x		additional command for replace
+EMACS Alt-x replace-string
+EMACS 
+

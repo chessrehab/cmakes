@@ -1,0 +1,13 @@
+git clone URL		(clones the repository from URL into current directory)
+git status		(shows the status of the current repository)
+git add FILES*		(adds FILES* to staging area)
+git config --global user.name "USERNAME" (sets the global user name of the git user)
+git config --global user.email EMAIL     (sets the global git user email)
+git commit -m "MESSAGE" (makes a commit with a naming message to local repository)
+git push		(pushes the local repository to global repo)
+git pull		(pulls changes from global repo to local repo)
+git branch NEWBRANCH	(creates a branch from current master branch)
+git checkout BRANCH	(switches to a branch)
+git branch -d BRANCH	(deletes the BRANCH)
+git merge BRANCH	(merges the BRANCH to master branch)
+
