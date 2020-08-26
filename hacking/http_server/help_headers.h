@@ -2,13 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/socket.h>
-#include <sys/stat.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <errno.h>
 
 #define PORT 6666
 
