@@ -1,0 +1,2 @@
+objdump -D a.out					(dumping object file of execultable to assembly with addresses)
+
