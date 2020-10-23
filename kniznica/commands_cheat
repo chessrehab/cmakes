@@ -294,5 +294,3 @@ netstat -g			(lists multicast groups configured)
 netstat -e			(lists only active sockets)
 iwconfig			(info about wireless network)
 iwlist DEVICE			(lists attributes of wifi device)
-
-f

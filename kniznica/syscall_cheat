@@ -332,8 +332,3 @@ PIPES_FIFOS int pipe(int filedes[2]); RETURNS:0 or -1(error) #INCLUDES:<unistd.h
 PIPES_FIFOS FILE *popen(const char *command,const char *mode); RETURNS: file stream or NULL(error) mode[r,w]  #INCLUDES:<stdio.h>
 PIPES_FIFOS int pclose(FILE *stream); RETURNS:term status of child proc or -1(err) #INCLUDES:<stdio.h>
 PIPES_FIFOS int mkfifo(const char *pathname,mode_t mode); RETURNS:0 or -1(err) #INCLUDES:<sys/stat.h>
-
-
-
-
-

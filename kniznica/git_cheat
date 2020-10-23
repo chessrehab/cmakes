@@ -10,4 +10,3 @@ git branch NEWBRANCH	(creates a branch from current master branch)
 git checkout BRANCH	(switches to a branch)
 git branch -d BRANCH	(deletes the BRANCH)
 git merge BRANCH	(merges the BRANCH to master branch)
-
