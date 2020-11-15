@@ -1,0 +1,11 @@
+operation <destination, <source>			(general opreation syntax)
+mov ebp, esp						(move vaue from stack pointer esp to base pointer ebp)
+sub esp, 0x8						(subtract from stac pointer esp value 8)
+inc esp, 0x8						(increment value in stack pointer by 8)
+cmp DWORD PTR [ebp-4], 0x9				(compares two values, first is base pointer ebp decreased by 4 againts 8, the result of comparison will be stored in one of the register flags)
+j**							(jump instructions)
+jle 8048393 <main+0x1f>					(jump to address 8048393 if the flag set by previous comparison is lss or equal, which is address of main function plus 31bytes)
+jmp 80483a6 <main+0x32>					(jump uncoditionally to address 8043a6 which equals address f funtion main plus 50 bytes)
+lea rax,[rbp-4]						(load effective address stored in RBP -4 to register RAX]
+inc DWORD PTR[rax]					(increment value in register RAX by one)
+
