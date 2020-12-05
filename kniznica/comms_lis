@@ -1,0 +1,26 @@
+ls	-list directory contents
+ls	[option] [file]
+ls	-a (all, incl hidden) -l (long listing) -F (file types) -i (inode) --sort=SMTHN
+printenv -print all or part of the environment
+printenv [option] [variable]
+printenv VAR
+env	-run program in a modified environment
+env	[option] [-] [NAME=VALUE] [COMMAND ARG]
+set	-set or unset values of shell options
+set	***unclear to me
+unset	unset shell variable
+unset	VAR
+echo	display a line of text
+echo	[SHORT-OPTION] [STRING]
+export	set export attribute for shell variables 
+export	VAR=VAL -p(display list of all exported vars and funcs
+cp	copy files and directories
+cp	[option] SOURCE DEST
+cp	-i (promp before overwrite) -l (hard link files instead of copy)
+cp	-P (no dereference of sym links) -n (no overwrite)
+cp	-r (recursive copy of directories) -s (make sym links instead of cp)
+cp	-t (target) -u (update,copy only when the source is newer than dest)
+cp	-v (verbose)
+
+
+
