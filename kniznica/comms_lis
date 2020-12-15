@@ -21,6 +21,24 @@ cp	-P (no dereference of sym links) -n (no overwrite)
 cp	-r (recursive copy of directories) -s (make sym links instead of cp)
 cp	-t (target) -u (update,copy only when the source is newer than dest)
 cp	-v (verbose)
-
+ln	make links between files
+ln	-f (force removing dest files) -i (interactive) -s (symbolic links)
+mv	move/rename files
+mv	[option] SOURCE DEST
+mv	-b (make backups) -f (force) -i (interactive prompts) -n (no overwrites)
+mv	-u (update only)
+rm	remove files or directories
+rm	[option] [file]
+rm	-f (force) -r (recursive) -i (interactive prompts) -I (ie prompt only once)
+mkdir	make directory
+mkdir	[option] DIRECTORY
+rmdir	remove empty directories
+rmdir	[option] DIRECTORY
+rmdir	-p (remove parents in the path)
+tree	lists of contents of directory/file structure
+tree	-d (only directories) -f (fullpath prefix) -x (stay on current fs)
+tree	-L (max depth level) -P (pattern filter) -p (file permissions)
+tree	-s (file size) -u (users) -h (human readable) -J (json format)
+file	determine file type
 
 
