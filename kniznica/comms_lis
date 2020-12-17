@@ -40,5 +40,22 @@ tree	-d (only directories) -f (fullpath prefix) -x (stay on current fs)
 tree	-L (max depth level) -P (pattern filter) -p (file permissions)
 tree	-s (file size) -u (users) -h (human readable) -J (json format)
 file	determine file type
-
+cat	concatenate files and print to stdout
+cat	-n (number lines) -s (squeeze out empty lines)
+tail	output last lines of file
+tail	-c (number of bytes) -n (number of lines) -f (follow-output appended data
+tail	as the file grows)
+head	print first lines of file to stdout
+head	-c (number of bytes) -n (number of lines)
+ps	output snapshot of current processes
+ps	-e (every process) -f (full columns) -o (list columns u want to display)
+ps	-N (negation) -r (only running processeses) -p (pid filter) -t (tty filter)
+ps	-F (extra full format) -s (session id) s (show signals) X (some registers)
+ps	f (ascii forrest) -H (forrest) k (sort by column) H (show threads)
+pstree	display tree of processes
+pstree	-p (show pids)
+top	interactive process list
+kill	send signal to a process
+kill	[options] <PID>
+kill	-L (list of signals on the system) -NR (send signal number)
 
