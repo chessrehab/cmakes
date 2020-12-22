@@ -58,4 +58,19 @@ top	interactive process list
 kill	send signal to a process
 kill	[options] <PID>
 kill	-L (list of signals on the system) -NR (send signal number)
-
+killall	kill process by name
+killall	-I (ignore case) -i (interactive) -r (regexp) -s (specific signal) 
+killall	-u (user)
+pkill	loopup or signal processes based on name or other attribues
+mount	mount a file system
+mount	-t (type) DEVICE DIR
+mount	-a (mount all as in fstab) -B (bind mount) -r (readonly mount) -rw -w
+mount	--source (source device) --target (target dir)
+umount	unmount filesystem
+umount	-f (force unmount on nonresponding NFS) -l (lazy unmount) -R (recursive)
+df	report filesystem disk space usage
+df	-t (only fs type t) --total (calculate totals)
+lsblk	list block devices
+lsblk	-fs (filesystems info) -o (output list of wished columns)
+du	estimate file space usage
+du	-s (summary per argument)
