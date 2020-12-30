@@ -74,3 +74,32 @@ lsblk	list block devices
 lsblk	-fs (filesystems info) -o (output list of wished columns)
 du	estimate file space usage
 du	-s (summary per argument)
+sort	sort lines of text
+sort	[OPTION [FILE]
+sort	-n (numeric sort) -r (reverse results) -k (via key)
+grep	searches for patterns in file
+grep	[OPTION] PATTERN [FILE]
+grep	-E (pattern is a extended regular expression) -F (fixed strings not regex) -G (basic regex)
+grep	-e (multiple expression patterns) -i (ignore case) -v (invert match) -c (output count of matchin lines)
+grep	-L (files wo match on output) -l (filenames with matches) -m (nr of lines to be read)
+grep	-H (with filenames) -h (no filenames) -n (add linemuber) -A (print number of lines-trailing)
+grep	-B (leading context print) --exclude=GLOB (exclude files from search) --exclude-dir=GLOB (dirs)
+grep	--include=GLOB (include files glob) -r (recursive in dirs)
+grep	^ (starting with) $ (trailing with)
+gzip	compress files
+gzip	[FILES]
+gzip	-d (decompress) -k (keep original files) -l (list of attributes of compression)
+gzip	-r (recursive compression in dirs) -v (verbose output of processing compression)
+gunzip	unzips files
+zcat	unzips file and cats it on output
+tar	archiving utility
+tar	-c (create) -v (verbose) -r (append to the archive) -t (list the contents of arch) -u (update with newer files)
+tar	-x (extract from archive) -z (gzip the archive) -h (dereference and follow symlinks)
+zip	package and archive compatible with winzip
+zip	add (add files to archive)
+unzip	-l (list archived files)
+sleep	delay for a specified amount of time
+sleep	NUMBER [SUFFIX]
+sleep	suffixes: s(sec) m(min) h(hours) d(days)
+jobs	 
+
