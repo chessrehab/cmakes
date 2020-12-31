@@ -11,14 +11,18 @@ OBJDUMP objdump -M intel				intel syntax
 
 GDB gdb -q executablefile				quiet  mode
 GDB break main						set the breakpoint to symbol <main>
-GDB del break 1						delete breakpoint
-GDB info registers					show register values
+GDB del break 1 (d br 1)				delete breakpoint
+GDB info breakpoints (i br)				show active breakpoints
+GDB info registers (i r)				show register values
+GDB info var (i va)					info of data variables (symbols)
+GDB x/xb &VAR						examine whats on the variable address
 GDB run							run program
 GDB cont						continue
 GDB kill						kill debugged program
 GDB quit						quit gdb
 GDB set disassembly intel				set dissasembly mode
 GDB list						list the source code
+GDB list NR_LINE					list the source code from line NR_LINE
 GDB disassemble _section				disasemble the named section
 GDB i r eip						info register eip
 GDB x/x $eip						eXamine contents(in heX) of memory stored in register eip
@@ -42,6 +46,15 @@ NASM INSTR mov dest,source				copy value from source to destination
 NASM INSTR mov dest,[source]				copy value pointed to by address source to dest
 NASM INSTR mov [dest],source				copy source to memory address poinbted to by dest
 NASM INSTR xchg dest,source				exchange values between source and destination
+NASM INSTR inc dest					increment destination value by 1
+NASM INSTR dec dest					decrement destination value by 1
+NASM INSTR jmp	LABEL					jumps to label or address
+NASM INSTR jnz LABEL					jump when zero flag is 0
+NASM INSTR movsx dest, source				copy value with keeping the sign bit of destination (sign extend)
+NASM INSTR movzx dest, source				copy value with replacing the rest of dest with zeros (zero extend)
+NASM INSTR neg OPERAND					negate a operand(register,memory value)
+
+
 
 
 
