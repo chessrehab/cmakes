@@ -56,6 +56,7 @@ NASM INSTR neg OPERAND					negate a operand(register,memory value)
 NASM INSTR mul r/m8 (r/m16, r/m32)			multiply value stored in IMPLICIT al(ax,eax) by r/m8 (r16,r32), store result in ax(ax+dx,edx+eax) and CF(1) if carryover and then dx (edx)
 NASM INSTR div r/m8 (r/m16, r/m32)			divide value stored in IMPLICIT al(ax, eax) by r/m8(r/m16,r/m32) store result in al(ax,eax) and remainder in ah (dx,edx)
 NASM INSTR add r/m, value/r/m				add 1st operand to second and store result in 1st operand
+NASM INSTR sub r/m, value				subtracts from first operand a value
 NASM INSTR push r16-32/m16-32/v				push register or memory or value on the stack
 NASM INSTR pop r/m					pops value from the stack to register/memory
 NASM INSTR pushf					pushes the flags register on the stack
@@ -66,10 +67,41 @@ NASM INSTR pusha					push all 8 registers on the stack
 NASM INSTR popa						pop all the 8 registers from the stack
 NASM INSTR pushad					push all 8 registers on the stack
 NASM INSTR popad					pop all 8 registers from the stack
-
-
+NASM INSTR cmp DEST,SRC					compares two operands by substracting them
+NASM INSTR and DEST,val					ands the destination=reg or memory, csnnot do 2 memories
+NASM INSTR not DEST					nots the destination reg or mem
+NASM INSTR or DEST,val					ors the destination with source
+NASM INSTR xor DEST,val					xors the destination with val
+NASM INSTR shr DEST,val					shifts right by val amount of bits
+NASM INSTR shl DEST,val					shifts left by val amount of bits
+NASM INSTR ja LABEL (jnbe)				jump if above to label (unsigned)
+NASM INSTR jb LABEL (jnae)				jump if below to label (unsigned)
+NASM INSTR jae LABEL (jnb)				jump above or equal to label (unsigned)
+NASM INSTR jbe LABEL (jna)				jump bellow or equal to label (unsigned)
+NASM INSTR je LABEL (jz)				jump if equal to label
+NASM INSTR jne LABEL (jnz)				jump if not equal to label
+NASM INSTR jg LABEL (jnle)				jump if greater to label (signed)
+NASM INSTR jl LABEL (jnge)				jump if less to label (signed)
+NASM INSTR jge LABEL (jnl)				jump if greater or equal to label (signed)
+NASM INSTR jle LABEL (jng)				jump if less or equal to label (signed)
+NASM INSTR jnc LABEL					jump if not CF
+NASM INSTR jc LABEL					jump if CF to label
+NASM INSTR ror DEST,val					rotate destination right
+NASM INSTR rol DEST,val					rotate destination left by val
+NASM INSTR rcr DEST,val					rotate destination right via the CF
+NASM INSTR rcl DEST,val					rotate destination left via the CF by val
+NASM INSTR test DEST,val				check one bit in dest via bit mask in val, ZF is set if bit is not set
+NASM INSTR bt reg,bit_position				puts the bit from destination on bit_position to CF
+NASM INSTR stc						set CF to 1
+NASM INSTR clc						clear CF
+NASM INSTR lea reg,[base+index *2,3,4,5,8,9+dispo]	load effective address to register based on eff. add. calculation with allowed values
+NASM INSTR xlat						implicit takes the address of lookup table from ebp and offset from al and places the value from lkp back to al
 
 
 MASM 
 
+
+SYSTEMCALLS NASM SYS_WRITE eax=4,ebx=fd,ecx=char*,edx=nr_char (INT 080h)	system write =write to standard output
+SYSTEMCALLS NASM SYS_READ eax=3,ebx=fd,ecx=char*,edx=nr_chars (INT 080h)	system read=read from standard input(fd)
+SYSTEMCALL NASM EXIT eax=1,ebx=return_val (INT 080h)				exit system call
 

@@ -13,11 +13,11 @@
 section .data                               ;initialized global variables area
 	otpt: db "Hello from ASM",10               ;definition of a string, with pointer otpt pointing to first byte
 	otpt_len: equ $-otpt                     ;definition of a constant for string length calculated from the memory pointer minus first byte of string
-	val1: dd  128
+	val1: dd  10
 	val2: dd  4
 
-;section .bss                                ;uninitialized global variables area
-	val3 dd
+section .bss                                ;uninitialized global variables area
+	val3: resd 1
 
 section .text                               ;text of code area
 	global _start                           ;entry point defining label entry point of code
@@ -25,31 +25,13 @@ section .text                               ;text of code area
 _start:                                     ;label entry point
 	nop                                     ;no operation, point for debugger to stop
 ;.............................................................................................sandbox
-	mov al,06h
-	add dword [val2], eax
-	mov eax,dword [val2]
-	push ax
-	push eax
-	push word [val2]
-	pop dx
-	pop dword [val3]
-	pushf
-	popf 
-	push 00400h
-	popfd
-	mov eax,6
-	mov ecx,7
-	mov edx,8
-	mov ebx,9
-	mov ebp,10
-	mov esi,11
-	mov edi,12
-	pushad
-	popad
+	mov al,01h
+	mov ebx,otpt
+	mov ebx,[otpt]
+	movzx ebx,byte [otpt+4]
+	lea dword [val2],[otpt+eax*9+1]
 
-
-
-
+	mov ebx,[val1]
 
 	nop
 ;..............................................................................................sandbox
