@@ -7,6 +7,7 @@
 
 COMPILER = nasm
 COMPILERFLAG = -g -f elf32 -F stabs
+COMPILERFLAG_nodbg = -f elf32
 LINKER = ld
 LINKERFLAG = -m elf_i386
 
@@ -21,5 +22,5 @@ hxdump2: ${OBJECTS}
 
 
 clean:
-	rm -rvf *.o sndbx
+	rm -rvf *.o hxdump2 nodbg
 
