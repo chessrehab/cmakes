@@ -25,13 +25,15 @@ section .text                               ;text of code area
 _start:                                     ;label entry point
 	nop                                     ;no operation, point for debugger to stop
 ;.............................................................................................sandbox
-	mov al,01h
-	mov ebx,otpt
-	mov ebx,[otpt]
-	movzx ebx,byte [otpt+4]
-	lea dword [val2],[otpt+eax*9+1]
+	mov eax, '9'
+	add eax, '9'
+	aaa
+	xor ebx,ebx
+	xor ecx,ecx
+	mov bl,al
+	mov cl,ah
 
-	mov ebx,[val1]
+	
 
 	nop
 ;..............................................................................................sandbox

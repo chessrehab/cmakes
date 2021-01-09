@@ -1,0 +1,20 @@
+
+
+%macro Exit_program 1
+	Print_out Exit_msg, Exit_msg_len	
+	mov eax, 0x1
+	mov ebx, %1
+	int 0x80
+%endmacro
+
+%macro Print_out 2
+	pushad
+	mov eax, 0x4
+	mov ebx, 0x1
+	mov ecx, %1
+	mov edx, %2
+	int 0x80
+	popad
+%endmacro
+
+
