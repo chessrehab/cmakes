@@ -1,4 +1,4 @@
-NASM COMPILE  nasm -f elf -g -F stabs filename.asm	compiling the asm source file
+ASM COMPILE  nasm -f elf -g -F stabs filename.asm	compiling the asm source file
 NASM COMPILE ld -o outputfile filename.o		linking the object file to output executable elf
 NASM COMPILE ld -m elf_i386 -o outputfile filename.o	linking object file on 32 bit mode
 NASM COMPILE nasm -f elf32 -g -F stabs filename.asm	compiling for 32 bit assembly
@@ -53,7 +53,8 @@ NASM INSTR jnz LABEL					jump when zero flag is 0
 NASM INSTR movsx dest, source				copy value with keeping the sign bit of destination (sign extend)
 NASM INSTR movzx dest, source				copy value with replacing the rest of dest with zeros (zero extend)
 NASM INSTR neg OPERAND					negate a operand(register,memory value)
-NASM INSTR mul r/m8 (r/m16, r/m32)			multiply value stored in IMPLICIT al(ax,eax) by r/m8 (r16,r32), store result in ax(ax+dx,edx+eax) and CF(1) if carryover and then dx (edx)
+NASM INSTR mul r/m8 (r/m16, r/m32)			unsigned multiply value stored in IMPLICIT al(ax,eax) by r/m8 (r16,r32), store result in ax(ax+dx,edx+eax) and CF(1) if carryover and then dx (edx)
+NASM INSTR imul r/m8 (r/m16, r/m32)			signed multiply value stored in IMPLICIT al(ax,eax) by r/m8 (r16,r32), store result in ax(ax+dx,edx+eax) and CF(1) if carryover and then dx (edx)
 NASM INSTR div r/m8 (r/m16, r/m32)			divide value stored in IMPLICIT al(ax, eax) by r/m8(r/m16,r/m32) store result in al(ax,eax) and remainder in ah (dx,edx)
 NASM INSTR add r/m, value/r/m				add 1st operand to second and store result in 1st operand
 NASM INSTR sub r/m, value				subtracts from first operand a value
@@ -96,6 +97,26 @@ NASM INSTR stc						set CF to 1
 NASM INSTR clc						clear CF
 NASM INSTR lea reg,[base+index *2,3,4,5,8,9+dispo]	load effective address to register based on eff. add. calculation with allowed values
 NASM INSTR xlat						implicit takes the address of lookup table from ebp and offset from al and places the value from lkp back to al
+NASM INSTR std						set direction flag to 1
+NASM INSTR cld						clear DF to 0
+NASM INSTR loop LABEL					decrease ecx and if its not zero jump to label
+NASM INSTR stosb					store byte(from al) to address pointed to edi and increase(if DF=0) edi or decrease (if DF=1) edi by one byte
+NASM INSTR rep stosb					store byte(from al) ECX number of times to address pointed to edi, while increasing (DF=0) or decreasing(DF=1) edi as well as decreasing ECX until ECX is 0
+NASM INSTR movsb					store byte(from address pointed to by ESI) to address pointed to EDI and increase(if DF=0) EDI or decrease (if DF=1) EDI by one byte
+NASM INSTR rep movsb					store byte(from address pointed to by ESI) ECX number of times to address pointed to EDI, while increasing (DF=0) or decreasing(DF=1) EDI as well as decreasing ECX until ECX is 0
+NASM INSTR stosw					store word(from ax) to address pointed to edi and increase(if DF=0) edi or decrease (if DF=1) edi by one word
+NASM INSTR rep stosw					store word(from ax) ECX number of times to address pointed to edi, while increasing (DF=0) or decreasing(DF=1) edi as well as decreasing ECX until ECX is 0
+NASM INSTR movsw					store word(from address pointed to by ESI) to address pointed to EDI and increase(if DF=0) EDI or decrease (if DF=1) EDI by one word
+NASM INSTR rep movsw					store word(from address pointed to by ESI) ECX number of times to address pointed to EDI, while increasing (DF=0) or decreasing(DF=1) EDI as well as decreasing ECX until ECX is 0
+NASM INSTR stosd					store doubleword(from eax) to address pointed to edi and increase(if DF=0) edi or decrease (if DF=1) edi by one doubleword
+NASM INSTR rep stosd					store doubleword(from eax) ECX number of times to address pointed to edi, while increasing (DF=0) or decreasing(DF=1) edi as well as decreasing ECX until ECX is 0
+NASM INSTR movsd					store doubleword(from address pointed to by ESI) to address pointed to EDI and increase(if DF=0) EDI or decrease (if DF=1) EDI by one doubleword
+NASM INSTR rep movsd					store doubleword(from address pointed to by ESI) ECX number of times to address pointed to EDI, while increasing (DF=0) or decreasing(DF=1) EDI as well as decreasing ECX until ECX is 0
+NASM INSTR aaa						help adding in BCD arithmetic, clears out high nibble of al, basically stores decimal digits in 4bit nibbles, also using AF (auxiliary carry flag) to report carry overs
+
+
+
+
 
 
 MASM 

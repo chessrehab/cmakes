@@ -1,23 +1,18 @@
 
 section .data
-	Str_move db 27,"[YY;XXH"                                        ;escape character string for moving cursor to YY,XX 
-        Str_move_len equ $-Str_move                                     ;length of the string
-        Str_clear_screen db 27,"[2J"                                    ;escape character string for clearing the terminal screen
-        Str_clear_screen_len equ $-Str_clear_screen                     ;length of the string
-	Test_msg: db "This is a test message."
-	Test_msg_len: equ $-Test_msg
-	Exit_msg: db 10,"...Exited gracefully...",10
-        Exit_msg_len equ $-Exit_msg
 	WIDTH: equ 81
-	HEIGHT: equ 24
+	HEIGHT: equ 25
 
 
-section .bss
-	Video_buf resd WIDTH*HEIGHT
 
 
 section .text
-GLOBAL _start
+
+EXTERN Video_buf
+GLOBAL Show,Clear,Write_str,Write_rul,Write_bar
+GLOBAL WIDTH,HEIGHT
+
+
 %include "./lib/libmacro.incl"				;contains macros for exititing program (Exit_program 1) and printing to standard output (Print_out 2)
 
 Show: ;fin						;function that displays the video buffer on standard output
@@ -124,45 +119,3 @@ Write_rul:						;function that writes horizontal or vertical rulers to video buf
 	.finish:
 	popad						;restore all registers from the stack
 	ret
-
-_start:
-	cld						;clear the direction flag for upwards string manipulation
-	call Clear					;clear the video buffer and initialize newline chars
-	mov eax,0x0c					;setup the X coordinate in eax
-	mov ebx,0x28					;setup the Y coordinate in ebx
-	mov esi, Test_msg				;setup the source index with address of the test msg
-	mov ecx, Test_msg_len				;setup ecx with test msg lenth
-	call Write_str					;write the test msg to video buffer
-
-	mov eax,0x0d					;set the Y coordinate for bar
-	mov ebx,0x0a					;set the X coordinate for bar
-	mov ecx,0x14					;set the length of the bar
-	mov ebp,0x3d					;set the byte to be the bar content
-	call Write_bar					;write the bar to video buffer
-
-	mov eax, 0x00					;set the rownumber (Y) for drawing the ruler
-	xor ebx,ebx					;choose the horizonatl ruler
-	call Write_rul					;write the ruler to video buffer
-
-	mov eax, 0x00					;set the column number for drawing ruler
-	mov ebx, 0x01					;choose vertical ruler
-	call Write_rul					;write the ruler to video buffer
-
-	mov eax, HEIGHT-1				;set the y coordinate (row) for bottom horizontal ruler
-	xor ebx,ebx					;choose horizontal ruler
-	call Write_rul					;write the ruler to the video buffer
-
-	mov eax, WIDTH-2				;set the  x coordinate (column) number
-	mov ebx, 0x01					;choose vertical ruler
-	call Write_rul					;write the ruler to video buffer
-
-	call Show					;print the video buffer to screen
-	jmp Ex						;jump tp exit
-
-
-
-
-
-
-Ex:
-	Exit_program 0					;exit program gracefully
