@@ -113,6 +113,8 @@ NASM INSTR rep stosd					store doubleword(from eax) ECX number of times to addre
 NASM INSTR movsd					store doubleword(from address pointed to by ESI) to address pointed to EDI and increase(if DF=0) EDI or decrease (if DF=1) EDI by one doubleword
 NASM INSTR rep movsd					store doubleword(from address pointed to by ESI) ECX number of times to address pointed to EDI, while increasing (DF=0) or decreasing(DF=1) EDI as well as decreasing ECX until ECX is 0
 NASM INSTR aaa						help adding in BCD arithmetic, clears out high nibble of al, basically stores decimal digits in 4bit nibbles, also using AF (auxiliary carry flag) to report carry overs
+NASM INSTR jcxz						jump if ecx equal zero
+NASM INSTR loopnz					decrement ecx, if not 0 loop back, also check the zero flag from previous instruction , if not zero loop back
 
 
 
