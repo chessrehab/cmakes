@@ -122,6 +122,128 @@ NASM INSTR loopnz					decrement ecx, if not 0 loop back, also check the zero fla
 
 
 MASM 
+MASM DIRECT X dup(?)					duplicate ?(undefined) X time in memory
+MASM DIRECT OPTION ...					sets assembler options (e.g.M510=assembler version 5.1)
+MASM SYMBOLS @code					returns the name of the code segment
+MASM SYMBOLS @CodeSize					returns an int representing the default code distance
+MASM SYMBOLS @CurSeg					REturns the name of the current segment
+MASM SYMBOLS @data					expands to DGROUP
+MASM SYMBOLS @DataSize					default data distance
+MASM SYMBOLS @fardata					name of the segment defined by .fardata dir
+MASM SYMBOLS @fardata?					name of the segment defined by .fardata? dir
+MASM SYMBOLS @Model					selected memory model
+MASM SYMBOLS @stack					expands to DGROUP for near stacks or STACK for far stack
+MASM SYMBOLS @WordSize					word size of the current segment
+MASM SYMBOLS @Cpu					bit mask specifying the processor mode
+MASM SYMBOLS @Environ					value of environment variables during assembly
+MASM SYMBOLS @Interface					contains information about language params
+MASM SYMBOLS @Version					masm version number (6.1=610)
+MASM SYMBOLS @Date					current system date
+MASM SYMBOLS @Time					current system time
+MASM SYMBOLS @FileCur					current file (base+suffix)
+MASM SYMBOLS @FileName					base name of current file
+MASM SYMBOLS @Line					source line number in the current file
+MASM SYMBOLS @CatStr					concatenation of two strings
+MASM SYMBOLS @InStr					starting position of a string within another string
+MASM SYMBOLS @SizeStr					length of a given string
+MASM SYMBOLS @SubStr					substring from a given string
+MASM DIRECT IF	expr					if expression is true=nonzero
+MASM DIRECT IFE	expr					if expression is false=zero
+MASM DIRECT IFDEF name					name has been defined previously
+MASM DIRECT IFNDEF name					if name has not been defined previously
+MASM DIRECT IFB arg					if argument is blank
+MASM DIRECT IFNB arg					if argument is not blank
+MASM DIRECT IFIDN(IFIDNI) arg1,arg2			if arg1 and arg2 are identical (with ignoring case)
+MASM DIRECT IFDIF(IFDIF) arg1,arg2			if arg1 and arg2 are different (with ignoring case)
+MASM DIRECT .ERR					assembly time error check
+MASM DIRECT .ERRNDEF name				assembly time error if name is not defined
+MASM DIRECT .MODEL model				program model (model=Tiny,Small,Medium,Compact,Large,Huge,Flat)
+MASM DIRECT .MODEL options				model options(options=language (c...),stack distance(nearstack,farstack)
+MASM DIRECT .STACK number				number can define the size of the stack
+MASM DIRECT .DATA					start of the data segment (shorthand)
+MASM DIRECT .CODE					start of the code segment (shorthand)
+MASM DIRECT .STARTUP					generates the code to adjust segment registers based on model
+MASM DIRECT .EXIT					generates the code to call msdos interrupt 21h with ah=04Ch (graceful exit with return value in al)
+MASM DIRECT END name					at the end of the asm with name specifying entry point to code
+MASM DIRECT .DATA?					uninitialized data
+MASM DIRECT .FARDATA					far data segment
+MASM DIRECT .FARDATA?					uninitialized far data segment
+MASM DIRECT .CONST					const data segment
+MASM DIRECT name SEGMENT				defines segment
+MASM DIRECT name ENDS					defines end of segment definition
+MASM DIRECT stack SEGMENT DWORD READONLY PRIVATE USE32 'STACK' defines stack segment aligned on 4byte(DWORD) boundary readonly private using 32bit segment offsets under class 'stack'
+MASM DIRECT ASSUME seg-reg:segment			set the segment registers to segment (..flat,nothing,error)
+MASM DIRECT GROUP seg,seg...				groups segment into group
+MASM DIRECT ASSUME cs:_text,ds:DGROUP,ss:DGROUP		one of the possible segment registers setups (nearstack)
+MASM INSTR OFFSET label					offset take the memory offset of variable/label from the 
+MASM INSTR SEG label					segment of the variable
+MASM INSTR WORD PTR[address]				word cast on memory address
+MASM DIRECT name TYPEDEF PTR WORD			define type name to pointer to word
+MASM DIRECT name TYPEDEF FAR PTR BYTE			define type name to far pointer to byte
+MASM DIRECT EXTERN var:PTR DWORD			define external variable that is a pointer to doubleword
+MASM INSTR les						load a segment into es
+MASM INSTR lds						load a segment into ds
+MASM INSTR CBW						convert byte to word (e.g. AL to AX)
+MASM INSTR CWD						convert word to double (e.g ax to dx:ax)
+MASM INSTR CWDE						convert word to double extended (e.g ax to eax)
+MASM INSTR CDQ						convert double to qword (e.g. eax to edx:eax)
+MASM INSTR ADC						add with carry
+MASM INSTR SBB						subtract with borrow
+MASM INSTR imul reg16,immed				multiplies reg16 with reg16*immed
+MASM INSTR imul reg16,reg16/mem16,immed			multiplies reg16/mem16 * immed and stores in reg16
+MASM INSTR imul reg,reg/mem				multiply reg*reg/mem and store in reg
+MASM DIRECT LENGTHOF					length in number of elements
+MASM DIRECT SIZEOF					size in bytes
+MASM DIRECT TYPE					size in bytes for one element
+MASM INSTR MOVS(B,W,D,Q)				moves bytes(words,doubles,quads) from esi to edi. after each move, moves fwd by one byte(w,d,q)
+MASM INSTR STOS(B,W,D,Q)				stores bytes(words,doubles,quads) in EDI. the bytes is taken from al(ax,eax,rax), moves fwd by one byte(w,d,q)
+MASM INSTR SCAS(B,W,D,Q)				scans the bytes(w,d,q) in edi and checks if its equal to byte(w,d,q) in al(ax,eax,rax), used with repeat until
+MASM INSTR CMPS(B,W,D,Q)				compares bytes(words,doubles,quads) in esi with edi and moves on by one element in both, used with repeat until
+MASM INSTR LODS(B,W,D,Q)				loads values from destination index to a(ax,eax,rax). not used with repeat
+MASM INSTR REP,REPNE,REPE				repeat prefix for string instructions REP-repeat, REPE-repeat while equal, REPNE-repeat while not equal
+MASM INSTR XLAT						translate an index stored in al to table stored in bx and lookup the value and store in al al=bx[al]
+MASM DIRECT name STRUCT align...name ENDS		declare template for structure name with alignement=align(default 1)
+MASM DIRECT name UNION....name ENDS			declare a template for union 
+MASM DIRECT var STRUCTname <init1,ini2>			initializing variable of type structure
+MASM DIRECT var STRUCTname {{ini1,ini2..},{ini1,ini2..}}initializing an array of structures of type STRUCTname
+MASM DIRECT name RECORD bitfield1:nrbits1,bitfield2:nrbits2...defining a type RECORD, cosnisting of fields defined by number of bits
+MASM DIRECT name RECORDtype <ini1,ini2...>		initializing variable name of type recordtype with values ini1...
+MASM DIRECT WIDTH recordfield				gives the number of bytes of the field from record type
+MASM DIRECT NOT MASK recordfield			negative mask for recordfield to be used with and to zero out the whole field in another operator,keeping the rest intact
+MASM DIRECT MASK recordfield				positive mask on recordfield to be used with or to turn all bits of the record field to 1 in another operator
+MASM INSTR FLD mem					load number from mem to top of the coproc register stack (ST)
+MASM INSTR FST mem					stores number from top of coproc register stack to mem
+MASM INSTR FSTP mem					stores number from top of coproc register stack to mem and pops it from the stack
+MASM INSTR FILD mem					load binary integer to stack
+MASM INSTR FIST mem					store binary integer from stack to mem
+MASM INSTR FISTP mem					store bin int from stack to mem and pop it from stack
+MASM INSTR FBLD	mem					load BCD from mem to stack
+MASM INSTR FBSTP mem					store BCD in memory from stack and pop the stack
+MASM INSTR FXCH reg1,reg2				exchange register values
+MASM INSTR FLDZ						load (push) 0 to ST
+MASM INSTR FLD1						load (push) 1 to ST
+MASM INSTR FLDCW mem2byte				loads the control word to coprocessor
+MASM INSTR FSTCW(FISTCW,FBSTCW)				stores control word in memory
+MASM INSTR FLDENV mem14byte				loads environment from memory
+MASM INSTR FSTENV mem14byte				stores environment in memory
+MASM INSTR FRSTOR mem94byte				restores state from memory
+MASM INSTR FSAVE mem94byte				save state of coproc in memory
+MASM INSTR FLDL2E					pushes the value of log(2e) into ST
+MASM INSTR FLDL2T					pushes the value of log(210) into ST
+MASM INSTR FLDLG2					pushes log(10)2 into ST
+MASM INSTR FLDLN2					pushes log(e2) to ST
+
+
+
+
+				
+
+
+
+
+
+
+
 
 
 SYSTEMCALLS NASM SYS_WRITE eax=4,ebx=fd,ecx=char*,edx=nr_char (INT 080h)	system write =write to standard output

@@ -1,0 +1,3 @@
+break /home/mx/cmakes/asm/15/cstackscan.asm:30
+break /home/mx/cmakes/asm/15/cstackscan.asm:73
+

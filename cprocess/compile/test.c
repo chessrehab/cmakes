@@ -40,7 +40,7 @@ int main() {
 	int c=123,number=NUMBER;
 	char d ='x';
 	
-	xtra34=fopen("test2","rw+");
+	xtra34=fopen("test2","r+");
 	int i=getc(xtra34);
 	int i2=getc(xtra34);
 	int i3=getc(xtra34);
