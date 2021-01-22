@@ -223,7 +223,7 @@ MASM INSTR FXCH reg1,reg2				exchange register values
 MASM INSTR FLDZ						load (push) 0 to ST
 MASM INSTR FLD1						load (push) 1 to ST
 MASM INSTR FLDCW mem2byte				loads the control word to coprocessor
-MASM INSTR FSTCW(FISTCW,FBSTCW)				stores control word in memory
+MASM INSTR FSTCW(FNSTCW)				stores control word in memory, N=no wait
 MASM INSTR FLDENV mem14byte				loads environment from memory
 MASM INSTR FSTENV mem14byte				stores environment in memory
 MASM INSTR FRSTOR mem94byte				restores state from memory
@@ -232,6 +232,90 @@ MASM INSTR FLDL2E					pushes the value of log(2e) into ST
 MASM INSTR FLDL2T					pushes the value of log(210) into ST
 MASM INSTR FLDLG2					pushes log(10)2 into ST
 MASM INSTR FLDLN2					pushes log(e2) to ST
+MASM INSTR FSUB						subtracts dource from destination (source=ST(1),dest=ST)
+MASM INSTR FSUBR					subtracts destination from source (source=ST1,dest=ST)
+MASM INSTR FMUL						multiplies the source and destination
+MASM INSTR FDIV						divides destination by source
+MASM INSTR FDIVR					divides the source by destination
+MASM INSTR FABS						sets the sign of ST to positive
+MASM INSTR FCHS						revesres the sign of ST
+MASM INSTR FRNDINT					rounds ST to integer
+MASM INSTR FSQRT					replaces ST with its square root
+MASM INSTR FSCALE					multiplies the stack top value by 2 to power of ST1
+MASM INSTR FPREM					calculates the remainedr of ST/ST1
+MASM INSTR FSIN						calculates the sin of ST
+MASM INSTR FCOS						calcultaes the cos of ST
+MASM INSTR FSINCOS					calculates the sin and cos of ST
+MASM INSTR FPREM1					calc partial remainder by modulo on top 2 stack registers
+MASM INSTR FXTRACT					breaks a number down into exponent and mantissa and pushes the mantissa on top of stack
+MASM INSTR F2XM						calc 2toX-1
+MASM INSTR FYL2X					calcs Y*logto2X
+MASM INSTR FYL2XP1					calcs Y*logto2(x+1)
+MASM INSTR FPTAN					calcs TAN value of ST
+MASM INSTR FPATAN					calcs arctan of y/x
+MASM INSTR FINIT(FNINIT)				resets the coproc and restores all default conditions in control and status word
+MASM INSTR FCLEX(FNCLEX)				clears all exception flags and the busy flag of status word
+MASM INSTR FINCSTP					adds 1 to stack pointer in status word
+MASM INSTR FDECSTP					subtracts 1 from stack pointer in status word
+MASM INSTR FFREE					marks the specified register as empty
+MASM INSTR FTST						test for zero C0=CF,C1='',C2=PF,C3=ZF (ST>0 c0,c2,c3=0) (ST<0 c0=1) (ST=0 c3=1) (non comarable (c0,c2,c3=1)
+MASM INSTR SAHF						store AH into flags register
+MASM INSTR FSTSW(FNSTSW) mem2byte			store AX into flags register
+MASM INSTR FCOM						compares ST with source (ST>source (c3=0,c2=0,c0=0) (ST<source C0=1) (ST=source c3=1) not comparabe (c0,c2,c3=1)
+MASM INSTR FCOMP					compares like FCOM but pops the stack after
+MASM INSTR FXAM						sets the value of control flags based on the type of the number in ST
+MASM INSTR FNOP						no op=copies the top of stack to itself
+MASM INSTR FDISI(FNDSI)					disables interrupts
+MASM INSTR FENI(FNENI)					enables interrupts
+MASM INSTR FSETPM					sets protected mode
+MASM INSTR FSAVED(FNSAVED) -W(word)			saving the coprocessor state
+MASM INSTR FRSTORD -W(word)				restoring the coprocessor state
+MASM INSTR AAA						adjusts after addition to BCD
+MASM INSTR AAS						adjust after subtraction to BCD
+MASM INSTR AAM						adjust after multiplication (only MUL)
+MASM INSTR AAD						adjust BEFORE division, use AAM after the operation to switch back to BCD
+MASM INSTR DAA						packed bcd after addition adjustment
+MASM INSTR DAS						packed BCD after subtraction adjustment
+MASM INSTR JC/JB/JNAE					CF is set (jump if bellow) unsigned
+MASM INSTR JNC/JNB/JAE					CF not set (jump if not bellow)
+MASM INSTR JBE/JNA					CF or ZF is set (jump if bellow or equal)
+MASM INSTR JA/JNBE					CF and ZF not set (jump if above)
+MASM INSTR JE/JZ					ZF set (jump if equal)
+MASM INSTR JNE/JNZ					ZF not set (jump if not equal)
+MASM INSTR JL/JNGE					SF not eq OF (jump if less)
+MASM INSTR JGE/JNL					SF = OF (jump if greater or equal)
+MASM INSTR JLE/JNG					ZF set or SF !=OF (jump if less or equal)
+MASM INSTR JG/JNLE					ZF not set and SF=OF
+MASM INSTR JS						SF set (jump if result is negative)
+MASM INSTR JNS						SF not set (result positive)
+MASM INSTR JO						OF set
+MASM INSTR JNO						OF not set
+MASM INSTR JP/JPE					PF set (even parity)
+MASM INSTR JNP/JPO					PF not set (odd parity)
+MASM INSTR JCXZ/JECXZ					CX/ECX is zero
+MASM INSTR BT X						copies xth bit to carry flag CF
+MASM DIRECT .IF .ELSEIF .ELSE .ENDIF			conditional directives
+MASM DIRECT LOOP label					checks CX=0 if not jumps to label
+MASM DIRECT LOOPE/LOOPZ label				checks both cx and zf (if any of them is 0= ZF=1) jumps back to label
+MASM DIRECT LOOPNE/LOOPNZ label				checks CX=0 or ZF=0 the jumps to label
+MASM DIRECT .WHILE .ENDW				while loop
+MASM DIRECT .REPEAT .UNTIL				repeat until loop
+MASM DIRECT .REPEAT .UNTILCXZ				repeat until cx=0
+MASM DIRECT .BREAK					break out of the loop
+MASM DIRECT .CONTINUE					continue the next loop iteration
+MASM DIRECT label PROC FAR C PUBLIC USES reg var1:WORD  procedure definition
+MASM DIRECT label ENDP					end of procedure
+MASM DIRECT PROC var3:VARARG				variable number of arguments, var3 is a pointer to remaining vars
+MASM DIRECT LOCAL var1					using local variables, masm does the stack offset addresing
+MASM DIRECT label PROTO NEAR C arg1:WORD..		defining procedure prototype
+MASM DIRECT INVOKE					invokes a procedure and pushes arguments on the stack (call doesnt do push), also cleans the stack after return\
+MASM INSTR ret X					return with X parameter, cleans X bytes from the stack after return
+MASM INSTR INT x					pushes flags,code segment register,IP register and jumps to interrupt vector function
+MASM INSTR IRET						returns from interrupt vector function, pops registers back and jumps to restored IP
+MASM INSTR INTO						interrupt on overflow
+
+	 
+
 
 
 
